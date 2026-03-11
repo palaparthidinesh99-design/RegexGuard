@@ -1,0 +1,12 @@
+FAILFAILLOGIN user attempted login
+INVALIDFAILACCESSACCESS system blocked access
+SELECTSELECTFROM table read attempt
+UPDATEWHEREWHERE admin forced update
+INSERTSELECTFROMFROM multi command sequence
+WARNWARNABCDERROR pattern detected
+ERRORABCDABCDWARN multi warning
+ABCD standalone pattern observed
+WARNERRORERROR unusual alert sequence
+random line that matches nothing
+aabcd
+xyxyabbc
