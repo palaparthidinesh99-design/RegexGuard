@@ -1,12 +1,13 @@
-FAILFAILLOGIN user attempted login
-INVALIDFAILACCESSACCESS system blocked access
-SELECTSELECTFROM table read attempt
-UPDATEWHEREWHERE admin forced update
-INSERTSELECTFROMFROM multi command sequence
-WARNWARNABCDERROR pattern detected
-ERRORABCDABCDWARN multi warning
-ABCD standalone pattern observed
-WARNERRORERROR unusual alert sequence
-random line that matches nothing
-aabcd
-xyxyabbc
+192.168.1.10 - - [23/Jul/2026:00:01:12] "GET /index.html HTTP/1.1" 200 1024
+192.168.1.15 - - [23/Jul/2026:00:01:15] "GET /login.php?user=admin' UNION SELECT * FROM users-- HTTP/1.1" 200 4096
+10.0.0.45 - - [23/Jul/2026:00:02:01] "POST /api/search HTTP/1.1" 200 512
+172.16.0.8 - - [23/Jul/2026:00:02:44] "GET /profile?name=<script>alert('XSS')</script> HTTP/1.1" 400 230
+192.168.1.88 - - [23/Jul/2026:00:03:10] "GET /download?file=../../../../etc/passwd HTTP/1.1" 403 150
+10.0.0.12 - - [23/Jul/2026:00:03:55] "POST /exec?cmd=127.0.0.1;cat /etc/shadow HTTP/1.1" 500 0
+192.168.1.99 - - [23/Jul/2026:00:04:20] "GET /uploads/c99.php HTTP/1.1" 200 8900
+10.0.0.5 - - [23/Jul/2026:00:05:00] "POST /login HTTP/1.1" 401 FAILLOGIN
+10.0.0.5 - - [23/Jul/2026:00:05:02] "POST /login HTTP/1.1" 401 INVALIDAUTH
+10.0.0.5 - - [23/Jul/2026:00:05:04] "POST /login HTTP/1.1" 401 UNAUTHORIZEDLOGIN
+WARNWARNABCDERROR pattern detected in system daemon
+Normal web browsing activity from internal workstation
+ERRORABCDABCDWARN multi warning event logged

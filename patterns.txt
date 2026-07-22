@@ -1,3 +1,10 @@
-(FAIL|INVALID)*(LOGIN|ACCESS)* LOGIN_FAIL high
-(SELECT|INSERT|UPDATE)*(FROM|WHERE)* SQL_INJECT medium
-(WARN|ERROR)*(ABCD)*(WARN|ERROR)* ALERT_SEQ low
+# RegexGuard Real-World Intrusion Pattern Signatures
+# Format: <RegexPattern> <IntrusionType> <Severity>
+
+(SELECT|INSERT|UPDATE|DELETE|UNION)+.*(FROM|WHERE|--) SQL_INJECTION CRITICAL
+(<script|javascript:|onerror=|onload=)+ XSS_ATTACK HIGH
+(\.\./|/etc/passwd|\.\.\\)+ PATH_TRAVERSAL CRITICAL
+(;cat|;ls|\|\|whoami|`id`)+ COMMAND_INJECTION CRITICAL
+(c99|r57|cmd\.php|eval\(base64)+ WEBSHELL_ACCESS CRITICAL
+(FAIL|INVALID|UNAUTHORIZED)+(LOGIN|AUTH)+ BRUTE_FORCE HIGH
+(WARN|ERROR)+(ABCD)*(WARN|ERROR)+ ALERT_SEQUENCE LOW
