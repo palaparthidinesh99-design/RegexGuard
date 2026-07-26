@@ -10,7 +10,7 @@
 - **Technologies Used**: `C++ (C++11)`, `Automata Theory`, `Regex Parsing`, `NFA/DFA Construction`, `Log Analysis`.
 - **Custom Regex Engine**: Built a high-performance custom regular expression compilation engine using **Thompson’s Construction**, supporting full regular expression syntax parsing and $\epsilon$-transition elimination.
 - **NFA $\rightarrow$ DFA Subset Construction**: Implemented powerset/subset construction to transform non-deterministic graphs into deterministic finite automata for fast, $O(N)$-time, zero-backtracking pattern matching across large-scale log datasets.
-- **Rule-Based Intrusion Detection Engine**: Designed a stream-based security monitoring engine configured to identify suspicious login failures, SQL injection attempts, and malicious access patterns.
+- **Rule-Based Intrusion Detection Engine**: Designed a stream-based security monitoring engine configured to identify suspicious login failures (`LOGIN_FAIL`), SQL injection attempts (`SQL_INJECT`), and anomalous alert sequences (`ALERT_SEQ`).
 
 ---
 
@@ -61,11 +61,11 @@ The parsing module translates human-readable regular expressions into postfix fo
 ### 4. Rule-Based Intrusion Detection System (`main.cpp` & `patterns.txt`)
 RegexGuard loads signature definitions from `patterns.txt` (formatted as `<RegexPattern> <IntrusionType> <Severity>`) and monitors log feeds (`log.txt`) to classify threat events:
 
-| Threat Category | Pattern Rule | Detection Capability |
-| :--- | :--- | :--- |
-| **Suspicious Login Failures** | `(FAIL\|INVALID)*(LOGIN\|ACCESS)*` | Detects brute-force authentication attacks, repeated access failures, and unauthorized privilege escalation. |
-| **SQL Injection (SQLi)** | `(SELECT\|INSERT\|UPDATE)*(FROM\|WHERE)*` | Identifies malicious payload injections, data exfiltration patterns, and unauthorized database operations. |
-| **Anomalous Alert Sequences** | `(WARN\|ERROR)*(ABCD)*(WARN\|ERROR)*` | Flags anomalous system log sequences and cascading warning/error spikes indicative of system instability or exploit payloads. |
+| Intrusion Type (Output Type) | Severity | Pattern Rule | Detection Capability |
+| :--- | :--- | :--- | :--- |
+| `LOGIN_FAIL` | `high` | `(FAIL\|INVALID)*(LOGIN\|ACCESS)*` | Detects suspicious login failures, brute-force authentication attempts, repeated access failures, and unauthorized privilege escalation. |
+| `SQL_INJECT` | `medium` | `(SELECT\|INSERT\|UPDATE)*(FROM\|WHERE)*` | Identifies SQL injection attempts, malicious payload injections, data exfiltration patterns, and unauthorized database operations. |
+| `ALERT_SEQ` | `low` | `(WARN\|ERROR)*(ABCD)*(WARN\|ERROR)*` | Flags anomalous system alert sequences and cascading warning/error spikes indicative of system instability or exploit payloads. |
 
 ---
 
