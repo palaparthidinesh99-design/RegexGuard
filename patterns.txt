@@ -1,6 +1,6 @@
-(Failed|Invalid|Deny)*(password|user|root)* SSH_BRUTEFORCE high
-(SELECT|UNION|INSERT|DELETE)*(FROM|WHERE|SCHEMA)* SQL_INJECTION critical
-(script|javascript|onerror)*(alert|eval|cookie)* XSS_ATTACK medium
-(bin/sh|bin/bash|cmd.exe)*(wget|curl|chmod)* CMD_INJECTION critical
-(Nmap|Nikto|Sqlmap|Gobuster)*(Scan|Probe|Test)* SCANNER_PROBE low
-(Kernel|OOM|Panic)*(Segmentation|out_of_memory)* SYSTEM_FAULT medium
+(Failed|Invalid|Deny) SSH_BRUTEFORCE high
+(SELECT|UNION|INSERT|DELETE) SQL_INJECTION critical
+(script|javascript|onerror) XSS_ATTACK medium
+(bin/sh|bin/bash|cmd.exe) CMD_INJECTION critical
+(Nmap|Nikto|Sqlmap|Gobuster) SCANNER_PROBE low
+(Kernel|OOM|Panic) SYSTEM_FAULT medium
