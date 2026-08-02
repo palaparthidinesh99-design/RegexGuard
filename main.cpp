@@ -138,11 +138,11 @@ int main(int argc, char* argv[]) {
     cout << "[INFO] RegexGuard Agent active. Monitoring: " << logFile << " (" 
          << (tailMode ? "LIVE TAIL MODE" : "BATCH MODE") << ")\n";
     cout << left
-         << setw(8)  << "LineNo"
-         << setw(50) << "Pattern"
-         << setw(70) << "LogLine"
-         << setw(15) << "Type"
-         << setw(10) << "Severity"
+         << setw(8)   << "LineNo"
+         << setw(52)  << "Pattern"
+         << setw(105) << "LogLine"
+         << setw(18)  << "Type"
+         << setw(10)  << "Severity"
          << "\n";
 
     while (g_running) {
@@ -155,11 +155,11 @@ int main(int argc, char* argv[]) {
                     alertCountsByType[p.intrusionType]++;
 
                     cout << left
-                         << setw(8)  << lineNo
-                         << setw(50) << p.pattern
-                         << setw(70) << logLine
-                         << setw(15) << p.intrusionType
-                         << setw(10) << p.severity
+                         << setw(8)   << lineNo
+                         << setw(52)  << p.pattern
+                         << setw(105) << logLine
+                         << setw(18)  << p.intrusionType
+                         << setw(10)  << p.severity
                          << "\n";
 
                     if (alertOut.is_open()) {

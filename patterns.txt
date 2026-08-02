@@ -1,3 +1,6 @@
-(FAIL|INVALID)*(LOGIN|ACCESS)* LOGIN_FAIL high
-(SELECT|INSERT|UPDATE)*(FROM|WHERE)* SQL_INJECT medium
-(WARN|ERROR)*(ABCD)*(WARN|ERROR)* ALERT_SEQ low
+(Failed|Invalid|Deny)*(password|user|root)* SSH_BRUTEFORCE high
+(SELECT|UNION|INSERT|DELETE)*(FROM|WHERE|SCHEMA)* SQL_INJECTION critical
+(script|javascript|onerror)*(alert|eval|cookie)* XSS_ATTACK medium
+(bin/sh|bin/bash|cmd.exe)*(wget|curl|chmod)* CMD_INJECTION critical
+(Nmap|Nikto|Sqlmap|Gobuster)*(Scan|Probe|Test)* SCANNER_PROBE low
+(Kernel|OOM|Panic)*(Segmentation|out_of_memory)* SYSTEM_FAULT medium

