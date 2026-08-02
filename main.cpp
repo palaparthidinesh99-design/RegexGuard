@@ -56,6 +56,7 @@ static void print_usage(const char* prog) {
          << "  -p, --patterns <file>    Path to signature rules file (default: patterns.txt)\n"
          << "  -l, --log <file>         Path to target log file (default: log.txt)\n"
          << "  -t, --tail               Enable real-time live log tailing mode\n"
+         << "  -v, --verbose            Enable verbose DFA state transition trace output\n"
          << "  -a, --alert-log <file>   Path to output alert log file (optional)\n"
          << "  -h, --help               Show this help message\n";
 }
@@ -68,6 +69,7 @@ int main(int argc, char* argv[]) {
     string logFile = "log.txt";
     string alertLogFile = "";
     bool tailMode = false;
+    bool verboseMode = false;
 
     for (int i = 1; i < argc; ++i) {
         string arg = argv[i];
@@ -79,6 +81,8 @@ int main(int argc, char* argv[]) {
             alertLogFile = argv[++i];
         } else if (arg == "-t" || arg == "--tail") {
             tailMode = true;
+        } else if (arg == "-v" || arg == "--verbose") {
+            verboseMode = true;
         } else if (arg == "-h" || arg == "--help") {
             print_usage(argv[0]);
             return 0;
@@ -150,7 +154,7 @@ int main(int argc, char* argv[]) {
             lineNo++;
             string logLine = trim_newline(string(buf));
             for (auto &p : patterns) {
-                if (p.dfa->RUN_DFASearch(logLine)) {
+                if (p.dfa->RUN_DFASearch(logLine, verboseMode)) {
                     totalAlerts++;
                     alertCountsByType[p.intrusionType]++;
 

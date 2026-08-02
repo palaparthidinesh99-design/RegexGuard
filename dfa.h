@@ -76,16 +76,30 @@ struct DFABuilder {
         return false;
     }
 
-    bool RUN_DFASearch(const string &text) const {
+    bool RUN_DFASearch(const string &text, bool verbose = false) const {
         int L = text.size();
         for(int i = 0; i < L; i++){
             int cur = startState;
+            vector<pair<char, int>> trace;
             for(int j = i; j < L; j++){
                 unsigned char c = (unsigned char)text[j];
                 int nxt = states[cur].trans[c];
                 if(nxt == -1) break;
                 cur = nxt;
-                if(states[cur].isAccept) return true;
+                trace.push_back({c, cur});
+                if(states[cur].isAccept) {
+                    if (verbose) {
+                        cout << "    [TRACE] Match found starting at index " << i << " (\"" << text.substr(i, j - i + 1) << "\"):\n";
+                        int stateFrom = startState;
+                        for (auto &step : trace) {
+                            cout << "      State S" << stateFrom << " --['" << step.first << "']--> State S" << step.second;
+                            if (states[step.second].isAccept) cout << " [ACCEPT STATE!]";
+                            cout << "\n";
+                            stateFrom = step.second;
+                        }
+                    }
+                    return true;
+                }
             }
         }
         return false;
