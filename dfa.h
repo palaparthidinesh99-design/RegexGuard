@@ -1,4 +1,3 @@
-
 #ifndef DFA_H
 #define DFA_H
 #include <vector>
@@ -6,12 +5,17 @@
 #include <set>
 #include <queue>
 #include <unordered_map>
+#include <cstring>
 using namespace std;
 #include "nfa.h"
 
 struct DFAState {
-    map<char,int> trans;
+    int trans[256];
     bool isAccept = false;
+
+    DFAState() {
+        memset(trans, -1, sizeof(trans));
+    }
 };
 
 struct DFABuilder {
@@ -60,7 +64,7 @@ struct DFABuilder {
                     q.push(nextSet);
                 }
 
-                states[cid].trans[c] = id[nextSet];
+                states[cid].trans[(unsigned char)c] = id[nextSet];
             }
         }
     }
@@ -74,21 +78,18 @@ struct DFABuilder {
 
     bool RUN_DFASearch(const string &text) const {
         int L = text.size();
-        for(int i=0;i<L;i++){
+        for(int i = 0; i < L; i++){
             int cur = startState;
-            for(int j=i;j<L;j++){
-                char c = text[j];
-                auto it = states[cur].trans.find(c);
-                if(it == states[cur].trans.end()) break;
-                cur = it->second;
+            for(int j = i; j < L; j++){
+                unsigned char c = (unsigned char)text[j];
+                int nxt = states[cur].trans[c];
+                if(nxt == -1) break;
+                cur = nxt;
                 if(states[cur].isAccept) return true;
             }
         }
         return false;
     }
-
-
-
 };
 
 #endif

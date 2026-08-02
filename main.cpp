@@ -78,5 +78,9 @@ int main(){
         }
     }
     fclose(lf);
+
+    for(auto &p : patterns){
+        delete p.dfa;
+    }
     return 0;
 }
